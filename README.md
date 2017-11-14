@@ -1,28 +1,28 @@
 # StructuredNoise
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/structured_noise`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a utility to generate Avro-schema-templated noise
 
-TODO: Delete this and the text above, and describe your gem
+### Features:
+
+README-driven development ;)
+
+####TODO FEATURES:
+
+* Reads an avro scheme indicated by `--schema` and writes noise to STDOUT
+* If given `--base64` it converts the avro binary data to Basee64 before sending it to STDOUT
+* Respects a `--messages-per-second` command
 
 ## Installation
 
-Add this line to your application's Gemfile:
+This is a debug tool. You probably don't want to install it in an applicaton
 
-```ruby
-gem 'structured_noise'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it with:
 
     $ gem install structured_noise
 
 ## Usage
 
-TODO: Write usage instructions here
+See Features above
 
 ## Development
 
