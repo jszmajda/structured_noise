@@ -14,7 +14,7 @@ module StructuredNoise
     end
 
     def load_schema
-      json = JSON.parse(File.read(canonical_schema_file_name))
+      json = JSON.parse(File.read(@schema_file_name))
       @schema_name = json["name"]
       @namespace = json["namespace"] || ""
 
@@ -65,10 +65,6 @@ module StructuredNoise
           sleep (1 / @messages_per_second)
         end
       end
-    end
-
-    def canonical_schema_file_name
-      File.join(File.dirname(__FILE__), '..', '..', @schema_file_name)
     end
 
     class TypeGenerator
