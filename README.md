@@ -26,7 +26,9 @@ Install it with:
 
 ## Usage
 
-See Features above
+Run from your console:
+
+`structured_noise [OPTIONS]`
 
 ## Development
 
