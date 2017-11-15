@@ -1,3 +1,6 @@
 #!/usr/bin/env ruby
 
 require "structured_noise"
+
+cli = StructuredNoise::CLI.new(__FILE__, ARGV)
+cli.run!

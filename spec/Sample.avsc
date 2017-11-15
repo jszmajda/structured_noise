@@ -1,0 +1,13 @@
+{
+  "name": "Sample",
+  "type": "record",
+  "namespace": "com.company",
+  "doc": "Stuff...",
+  "aliases": [],
+  "fields": [
+    { "name": "number",          "type": "int" },
+    { "name": "string",          "type": "string" },
+    { "name": "optional_number", "type": ["null", "int"] },
+    { "name": "date",            "type": "long", "logicalType": "timestamp-millis" }
+  ]
+}

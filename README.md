@@ -11,6 +11,8 @@ README-driven development ;)
 * Reads an avro scheme indicated by `--schema` and writes noise to STDOUT
 * If given `--base64` it converts the avro binary data to Basee64 before sending it to STDOUT
 * Respects a `--messages-per-second` command
+* `--template filename` should support a JSON-structure template for Avro messages, with 'fill in the blanks' as like.. * or something.
+* `--malicious-compliance` will toggle generating edge-case data compliant with given Avro types
 
 ## Installation
 
