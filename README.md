@@ -12,6 +12,7 @@ README-driven development ;)
 
 ####TODO FEATURES:
 
+* `--decode` should decode avro coming in via STDIN, respecting `--base64` flag, writing JSON hashes to STDOUT
 * `--template filename` should support a JSON-structure template for Avro messages, with 'fill in the blanks' as like.. * or something.
 * `--malicious-compliance` will toggle generating edge-case data compliant with given Avro types
 
