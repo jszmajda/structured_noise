@@ -9,6 +9,7 @@ README-driven development ;)
 * Reads an avro scheme indicated by `--schema` and writes noise to STDOUT
 * If given `--base64` it converts the avro binary data to Basee64 before sending it to STDOUT
 * Respects a `--messages-per-second` command
+* Outputs data conforming to the [Avro Single Object Message](http://avro.apache.org/docs/1.8.2/spec.html#single_object_encoding) spec
 
 ####TODO FEATURES:
 

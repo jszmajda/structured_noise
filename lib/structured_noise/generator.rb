@@ -2,7 +2,9 @@ require 'json'
 require 'avro'
 require 'avro-patches'
 require 'base64'
+require 'avro_pinions'
 module StructuredNoise
+
   class Generator
     MAGIC_BYTE = [0].pack("C").freeze
 
@@ -11,6 +13,23 @@ module StructuredNoise
       @output_base64 = base64
       @messages_per_second = messages_per_second
       @schemas = {}
+
+      AvroPinions.configure({ wire_format: :single_object })
+
+      @message = Class.new(AvroPinions::Message) do
+        def initialize(avro_schema, data)
+          @avro_schema = avro_schema
+          @data = data
+        end
+
+        def record
+          @data
+        end
+
+        def avro_schema
+          @avro_schema
+        end
+      end
     end
 
     def load_schema
@@ -23,11 +42,11 @@ module StructuredNoise
 
     def generate_output
       with_timing do
-        message = encode(generate_random_fields)
+        msg = @message.new(@avro_schema, generate_random_fields).encode
         if @output_base64
-          message = Base64.encode64(message)
+          msg = Base64.encode64(msg)
         end
-        puts message
+        puts msg
       end
     end
 
@@ -37,25 +56,6 @@ module StructuredNoise
         hash[field.name] = type_gen.generate_value
         hash
       end
-    end
-
-    def encode(fields)
-      stream = StringIO.new
-      writer = Avro::IO::DatumWriter.new(@avro_schema)
-      encoder = Avro::IO::BinaryEncoder.new(stream)
-
-      # Always start with the magic byte.
-      encoder.write(MAGIC_BYTE)
-
-      # The schema id is encoded as a 4-byte big-endian integer.
-      fullname = Avro::Name.make_fullname(@schema_name, @namespace)
-      #encoder.write([fullname].pack("N"))
-      encoder.write([1].pack("N"))
-
-      # The actual message comes last.
-      writer.write(fields, encoder)
-
-      stream.string
     end
 
     def with_timing
